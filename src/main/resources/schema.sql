@@ -23,7 +23,8 @@ CREATE TABLE `payment` (
 CREATE TABLE `disbursement` (
   `disbursement_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(10) NOT NULL,
-  `amount` decimal(10,2) NOT NULL,
+  `amount_payment` decimal(10,2) NOT NULL,
+  `amount_disbursement` decimal(10,2) NOT NULL,
   `created_dt` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`disbursement_id`)
 );

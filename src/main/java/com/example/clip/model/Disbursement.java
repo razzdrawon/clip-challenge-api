@@ -39,8 +39,12 @@ public class Disbursement {
     private Long disbursementId;
     
     @NonNull
-    @Column(name = "amount")
-    private BigDecimal amount;
+    @Column(name = "amount_payment")
+    private BigDecimal amountPayment;
+    
+    @NonNull
+    @Column(name = "amount_disbursement")
+    private BigDecimal amountDisbursement;
     
     @NonNull
     @Column(name = "user_id")

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.clip.model.Disbursement;
+import com.example.clip.model.dto.UserDisbursementDTO;
 import com.example.clip.service.DisbursementService;
 
 @RestController
@@ -23,7 +24,7 @@ public class DisbursementController {
 
 
     @PostMapping("/disbursements")
-	public ResponseEntity<List<Disbursement>> processDisbursements() {
+	public ResponseEntity<List<UserDisbursementDTO>> processDisbursements() {
 		return new ResponseEntity<>(disbursementService.processDisbursements(), HttpStatus.CREATED);
 	}
     

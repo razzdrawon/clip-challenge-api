@@ -15,8 +15,11 @@ import org.springframework.stereotype.Service;
 
 import com.example.clip.model.Disbursement;
 import com.example.clip.model.Payment;
+import com.example.clip.model.User;
+import com.example.clip.model.dto.UserDisbursementDTO;
 import com.example.clip.repository.DisbursementRepository;
 import com.example.clip.repository.PaymentRepository;
+import com.example.clip.repository.UserRepository;
 
 /**
  * @author Ricardo Padilla
@@ -32,22 +35,36 @@ public class DisbursementServiceImpl implements DisbursementService {
 	
 	@Autowired
 	private DisbursementRepository disbursementRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
 
 	@Override
-	public List<Disbursement> processDisbursements() {
+	public List<UserDisbursementDTO> processDisbursements() {
+		List<UserDisbursementDTO> usersDto = new ArrayList<>();
 		List<Payment> payments = paymentRepository.findByIsDisbursed(false);
 		Map<Long, List<Payment>> paymentsByUser = payments.stream().collect(Collectors.groupingBy(Payment::getUserId));
-		List<Disbursement> disbursements = new ArrayList<>();
 		for (Long userId : paymentsByUser.keySet()) {
-			BigDecimal amount = BigDecimal.ZERO;
+			BigDecimal amountPayment = BigDecimal.ZERO;
 			for (Payment payment : paymentsByUser.get(userId)) {
-				amount = amount.add(payment.getAmount().multiply(FEE).setScale(2, RoundingMode.HALF_EVEN));
+				amountPayment = amountPayment.add(payment.getAmount());
 				payment.setIsDisbursed(true);
 				paymentRepository.save(payment);
 			}
-			disbursements.add(disbursementRepository.save(new Disbursement(amount, userId)));
+			User user = userRepository.getById(userId);
+			Disbursement disbursement = disbursementRepository.save(
+					new Disbursement(amountPayment, amountPayment.multiply(FEE).setScale(2, RoundingMode.HALF_EVEN), userId)
+					);
+			UserDisbursementDTO userDto = new UserDisbursementDTO(
+					userId, 
+					user.getFirstName(), 
+					user.getLastName(),
+					disbursement.getAmountPayment(),
+					disbursement.getAmountDisbursement()
+					);
+			usersDto.add(userDto);
 		}
-		return disbursements;
+		return usersDto;
 	}
 
 	@Override
