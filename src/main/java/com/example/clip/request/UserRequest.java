@@ -9,8 +9,8 @@ import lombok.ToString;
 @ToString
 public class UserRequest {
 
-    Long userId;
-    String firstName;
-    String lastName;
+	Long userId;
+	String firstName;
+	String lastName;
 
 }

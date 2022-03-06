@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Setter
 @ToString
 public class PaymentRequest {
-    BigDecimal amount;
-    Long userId;
-    String cardInfo;
+	BigDecimal amount;
+	Long userId;
+	String cardInfo;
 }

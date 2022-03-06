@@ -26,30 +26,28 @@ import com.example.clip.service.UserService;
 @RestController
 @RequestMapping("/api/clip")
 public class UserController {
-	
+
 	@Autowired
-    private UserService userService;
-	
+	private UserService userService;
+
 	@GetMapping("/users")
-    public ResponseEntity<List<User>> getAllUsers(){
+	public ResponseEntity<List<User>> getAllUsers() {
 		System.out.println(userService.getAllUsers());
-    	return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
-    }
-	
+		return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
+	}
+
 	@GetMapping("/usersWithPayments")
-    public ResponseEntity<List<User>> getUsersWithPayments(){
-    	return new ResponseEntity<>(userService.getUsersWithPayments(), HttpStatus.OK);
-    }
-	
+	public ResponseEntity<List<User>> getUsersWithPayments() {
+		return new ResponseEntity<>(userService.getUsersWithPayments(), HttpStatus.OK);
+	}
+
 	@GetMapping("/users/{userId}")
-    public ResponseEntity<Optional<User>> getUserById(@PathVariable Long userId){
-    	return new ResponseEntity<>(userService.getUserById(userId), HttpStatus.OK);
-    }
-	
-	@RequestMapping(value = "/users",
-			params = "firstName",
-		    method = RequestMethod.GET)
-    public ResponseEntity<List<User>> getUserByFirstName(@RequestParam String firstName){
-    	return new ResponseEntity<>(userService.getUserByFirstName(firstName), HttpStatus.OK);
-    }
+	public ResponseEntity<Optional<User>> getUserById(@PathVariable Long userId) {
+		return new ResponseEntity<>(userService.getUserById(userId), HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/users", params = "firstName", method = RequestMethod.GET)
+	public ResponseEntity<List<User>> getUserByFirstName(@RequestParam String firstName) {
+		return new ResponseEntity<>(userService.getUserByFirstName(firstName), HttpStatus.OK);
+	}
 }

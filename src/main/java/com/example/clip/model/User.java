@@ -35,18 +35,18 @@ import lombok.ToString;
 @Setter
 @ToString
 public class User {
-	
+
 	@Id
 	@Column(name = "user_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long userId;
+
 	@Column(name = "first_name")
 	private String firstName;
-	
+
 	@Column(name = "last_name")
 	private String lastName;
-	
+
 	@CreatedDate
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_dt")

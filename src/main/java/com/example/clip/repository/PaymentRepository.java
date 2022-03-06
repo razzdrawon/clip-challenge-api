@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 @EnableJpaAuditing
 @Repository
 public interface PaymentRepository extends JpaRepository<Payment, Long> {
+	
 	List<Payment> findByUserId(Long userId);
+
 	List<Payment> findByIsDisbursed(Boolean isDisbursed);
 }

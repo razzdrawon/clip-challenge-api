@@ -15,10 +15,10 @@ import com.example.clip.model.User;
  *
  */
 public interface UserRepository extends JpaRepository<User, Long> {
-	
+
 	List<User> findByFirstName(String firstName);
-	
+
 	@Query("SELECT DISTINCT u FROM User u, Payment p WHERE u.userId = p.userId")
 	List<User> findUserWithPayment();
-	
+
 }

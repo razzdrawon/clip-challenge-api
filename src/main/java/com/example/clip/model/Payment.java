@@ -33,29 +33,29 @@ import lombok.ToString;
 @NoArgsConstructor
 public class Payment {
 
-    @Id
-    @Column(name = "payment_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long paymentId;
-    
-    @NonNull
-    @Column(name = "amount")
-    private BigDecimal amount;
-    
-    @NonNull
-    @Column(name = "user_id")
-    private Long userId;
-    
-    @Column(name = "is_disbursed")
-    private Boolean isDisbursed;
-    
-    @NonNull
-    @Column(name = "card_info")
-    private String cardInfo;
-    
-    @CreatedDate
-    @Temporal(TemporalType.TIMESTAMP)
+	@Id
+	@Column(name = "payment_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long paymentId;
+
+	@NonNull
+	@Column(name = "amount")
+	private BigDecimal amount;
+
+	@NonNull
+	@Column(name = "user_id")
+	private Long userId;
+
+	@Column(name = "is_disbursed")
+	private Boolean isDisbursed;
+
+	@NonNull
+	@Column(name = "card_info")
+	private String cardInfo;
+
+	@CreatedDate
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_dt")
 	private Date createdDt;
-    
+
 }

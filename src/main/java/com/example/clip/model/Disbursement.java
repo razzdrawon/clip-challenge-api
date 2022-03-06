@@ -1,4 +1,4 @@
-	package com.example.clip.model;
+package com.example.clip.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -33,26 +33,26 @@ import lombok.ToString;
 @NoArgsConstructor
 public class Disbursement {
 
-    @Id
-    @Column(name = "disbursement_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long disbursementId;
-    
-    @NonNull
-    @Column(name = "amount_payment")
-    private BigDecimal amountPayment;
-    
-    @NonNull
-    @Column(name = "amount_disbursement")
-    private BigDecimal amountDisbursement;
-    
-    @NonNull
-    @Column(name = "user_id")
-    private Long userId;
-    
-    @CreatedDate
-    @Temporal(TemporalType.TIMESTAMP)
+	@Id
+	@Column(name = "disbursement_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long disbursementId;
+
+	@NonNull
+	@Column(name = "amount_payment")
+	private BigDecimal amountPayment;
+
+	@NonNull
+	@Column(name = "amount_disbursement")
+	private BigDecimal amountDisbursement;
+
+	@NonNull
+	@Column(name = "user_id")
+	private Long userId;
+
+	@CreatedDate
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_dt")
 	private Date createdDt;
-    
+
 }

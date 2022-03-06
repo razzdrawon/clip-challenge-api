@@ -1,6 +1,5 @@
 package com.example.clip.controller;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +18,15 @@ import com.example.clip.service.DisbursementService;
 @RequestMapping("/api/clip")
 public class DisbursementController {
 
-    @Autowired
-    DisbursementService disbursementService;
+	@Autowired
+	DisbursementService disbursementService;
 
-
-    @PostMapping("/disbursements")
+	@PostMapping("/disbursements")
 	public ResponseEntity<List<UserDisbursementDTO>> processDisbursements() {
 		return new ResponseEntity<>(disbursementService.processDisbursements(), HttpStatus.CREATED);
 	}
-    
-    @GetMapping("/disbursements")
+
+	@GetMapping("/disbursements")
 	public ResponseEntity<List<Disbursement>> getAllDisburse() {
 		return new ResponseEntity<>(disbursementService.getAllDisbursements(), HttpStatus.OK);
 	}

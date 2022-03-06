@@ -13,13 +13,13 @@ import com.example.clip.model.User;
  */
 @Service
 public interface UserService {
-	
+
 	public List<User> getAllUsers();
-	
+
 	public List<User> getUsersWithPayments();
-	
+
 	public Optional<User> getUserById(Long userId);
-	
+
 	public List<User> getUserByFirstName(String firstName);
 
 }

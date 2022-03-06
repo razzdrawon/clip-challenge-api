@@ -17,7 +17,7 @@ import com.example.clip.repository.PaymentRepository;
  */
 @Service
 public class TransactionServiceImpl implements TransactionService {
-	
+
 	@Autowired
 	private PaymentRepository paymentRepository;
 

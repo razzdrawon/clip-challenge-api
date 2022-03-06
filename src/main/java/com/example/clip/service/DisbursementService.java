@@ -13,9 +13,9 @@ import com.example.clip.model.dto.UserDisbursementDTO;
  */
 @Service
 public interface DisbursementService {
-	
+
 	public List<UserDisbursementDTO> processDisbursements();
-	
+
 	public List<Disbursement> getAllDisbursements();
 
 }

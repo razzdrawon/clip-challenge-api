@@ -18,7 +18,7 @@ import com.example.clip.repository.UserRepository;
  */
 @Service
 public class UserServiceImpl implements UserService {
-	
+
 	@Autowired
 	private UserRepository userRepository;
 
@@ -26,17 +26,17 @@ public class UserServiceImpl implements UserService {
 	public List<User> getAllUsers() {
 		return userRepository.findAll();
 	}
-	
+
 	@Override
 	public List<User> getUsersWithPayments() {
 		return userRepository.findUserWithPayment();
 	}
-	
+
 	@Override
 	public Optional<User> getUserById(Long userId) {
 		return userRepository.findById(userId);
 	}
-	
+
 	@Override
 	public List<User> getUserByFirstName(String firstName) {
 		return userRepository.findByFirstName(firstName);

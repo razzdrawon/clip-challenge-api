@@ -12,7 +12,7 @@ import com.example.clip.model.Payment;
  */
 @Service
 public interface TransactionService {
-	
+
 	public List<Payment> getAllPayments();
 
 	public Payment createPayment(Payment payment);

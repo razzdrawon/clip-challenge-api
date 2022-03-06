@@ -1,6 +1,5 @@
 package com.example.clip.controller;
 
-
 import java.math.RoundingMode;
 import java.util.List;
 
@@ -21,21 +20,19 @@ import com.example.clip.service.TransactionService;
 @RequestMapping("/api/clip")
 public class TransactionController {
 
-    @Autowired
-    TransactionService transactionService;
+	@Autowired
+	TransactionService transactionService;
 
-    @PostMapping("/payments")
-    public ResponseEntity<Payment> create(@RequestBody PaymentRequest paymentRequest) {
-    	Payment payment = new Payment(
-    			paymentRequest.getAmount().setScale(2, RoundingMode.HALF_EVEN), 
-    			paymentRequest.getUserId(), 
-    			paymentRequest.getCardInfo());
-        return new ResponseEntity<>(transactionService.createPayment(payment), HttpStatus.CREATED);
-        
-    }
-    
-    @GetMapping("/payments")
-    public ResponseEntity<List<Payment>> getAllPayments() {
+	@PostMapping("/payments")
+	public ResponseEntity<Payment> create(@RequestBody PaymentRequest paymentRequest) {
+		Payment payment = new Payment(paymentRequest.getAmount().setScale(2, RoundingMode.HALF_EVEN),
+				paymentRequest.getUserId(), paymentRequest.getCardInfo());
+		return new ResponseEntity<>(transactionService.createPayment(payment), HttpStatus.CREATED);
+
+	}
+
+	@GetMapping("/payments")
+	public ResponseEntity<List<Payment>> getAllPayments() {
 		return new ResponseEntity<>(transactionService.getAllPayments(), HttpStatus.OK);
 	}
 

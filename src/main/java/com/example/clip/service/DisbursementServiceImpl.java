@@ -27,15 +27,15 @@ import com.example.clip.repository.UserRepository;
  */
 @Service
 public class DisbursementServiceImpl implements DisbursementService {
-	
+
 	private static final BigDecimal FEE = new BigDecimal(1 - 0.035);
-	
+
 	@Autowired
 	private PaymentRepository paymentRepository;
-	
+
 	@Autowired
 	private DisbursementRepository disbursementRepository;
-	
+
 	@Autowired
 	private UserRepository userRepository;
 
@@ -52,16 +52,10 @@ public class DisbursementServiceImpl implements DisbursementService {
 				paymentRepository.save(payment);
 			}
 			User user = userRepository.getById(userId);
-			Disbursement disbursement = disbursementRepository.save(
-					new Disbursement(amountPayment, amountPayment.multiply(FEE).setScale(2, RoundingMode.HALF_EVEN), userId)
-					);
-			UserDisbursementDTO userDto = new UserDisbursementDTO(
-					userId, 
-					user.getFirstName(), 
-					user.getLastName(),
-					disbursement.getAmountPayment(),
-					disbursement.getAmountDisbursement()
-					);
+			Disbursement disbursement = disbursementRepository.save(new Disbursement(amountPayment,
+					amountPayment.multiply(FEE).setScale(2, RoundingMode.HALF_EVEN), userId));
+			UserDisbursementDTO userDto = new UserDisbursementDTO(userId, user.getFirstName(), user.getLastName(),
+					disbursement.getAmountPayment(), disbursement.getAmountDisbursement());
 			usersDto.add(userDto);
 		}
 		return usersDto;
