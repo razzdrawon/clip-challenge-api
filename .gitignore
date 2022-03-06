@@ -1,3 +1,4 @@
+.idea*
 *.class
 *.log
 *.classpath
@@ -5,12 +6,8 @@
 *.project
 *.settings/
 *target/
-*.jar
 *.war
-*.nar
-*.ear
+*.jar
 *.zip
 *.tar.gz
 *.rar
-# Default ignored files
-/workspace.xml
