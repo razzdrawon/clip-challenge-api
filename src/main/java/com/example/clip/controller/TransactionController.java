@@ -1,6 +1,7 @@
 package com.example.clip.controller;
 
 
+import java.math.RoundingMode;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class TransactionController {
     @PostMapping("/payments")
     public ResponseEntity<Payment> create(@RequestBody PaymentRequest paymentRequest) {
     	Payment payment = new Payment(
-    			paymentRequest.getAmount(), 
+    			paymentRequest.getAmount().setScale(2, RoundingMode.HALF_EVEN), 
     			paymentRequest.getUserId(), 
     			paymentRequest.getCardInfo());
         return new ResponseEntity<>(transactionService.createPayment(payment), HttpStatus.CREATED);

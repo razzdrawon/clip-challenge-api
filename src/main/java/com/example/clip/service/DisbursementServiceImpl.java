@@ -4,6 +4,7 @@
 package com.example.clip.service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,8 @@ import com.example.clip.repository.PaymentRepository;
 @Service
 public class DisbursementServiceImpl implements DisbursementService {
 	
+	private static final BigDecimal FEE = new BigDecimal(1 - 0.035);
+	
 	@Autowired
 	private PaymentRepository paymentRepository;
 	
@@ -38,7 +41,7 @@ public class DisbursementServiceImpl implements DisbursementService {
 		for (Long userId : paymentsByUser.keySet()) {
 			BigDecimal amount = BigDecimal.ZERO;
 			for (Payment payment : paymentsByUser.get(userId)) {
-				amount = amount.add(payment.getAmount());
+				amount = amount.add(payment.getAmount().multiply(FEE).setScale(2, RoundingMode.HALF_EVEN));
 				payment.setIsDisbursed(true);
 				paymentRepository.save(payment);
 			}
