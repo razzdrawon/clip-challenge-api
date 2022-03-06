@@ -1,8 +1,6 @@
-/**
- * 
- */
-package com.example.clip.model;
+	package com.example.clip.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -20,36 +18,37 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-/**
- * @author Ricardo Padilla
- *
- */
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "user")
-@NoArgsConstructor
+@Table(name = "disbursement")
 @Getter
 @Setter
 @ToString
-public class User {
-	
-	@Id
-	@Column(name = "user_id")
+@RequiredArgsConstructor
+@NoArgsConstructor
+public class Disbursement {
+
+    @Id
+    @Column(name = "disbursement_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long disbursementId;
+    
+    @NonNull
+    @Column(name = "amount")
+    private BigDecimal amount;
+    
+    @NonNull
+    @Column(name = "user_id")
     private Long userId;
-	
-	@Column(name = "first_name")
-	private String firstName;
-	
-	@Column(name = "last_name")
-	private String lastName;
-	
-	@CreatedDate
-	@Temporal(TemporalType.TIMESTAMP)
+    
+    @CreatedDate
+    @Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_dt")
 	private Date createdDt;
-
+    
 }

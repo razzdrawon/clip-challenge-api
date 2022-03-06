@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.clip.model.Payment;
+import com.example.clip.request.PaymentRequest;
 import com.example.clip.service.TransactionService;
 
 @RestController
@@ -22,8 +23,12 @@ public class TransactionController {
     @Autowired
     TransactionService transactionService;
 
-    @PostMapping("/createPayload")
-    public ResponseEntity<Payment> create(@RequestBody Payment payment) {
+    @PostMapping("/payments")
+    public ResponseEntity<Payment> create(@RequestBody PaymentRequest paymentRequest) {
+    	Payment payment = new Payment(
+    			paymentRequest.getAmount(), 
+    			paymentRequest.getUserId(), 
+    			paymentRequest.getCardInfo());
         return new ResponseEntity<>(transactionService.createPayment(payment), HttpStatus.CREATED);
         
     }

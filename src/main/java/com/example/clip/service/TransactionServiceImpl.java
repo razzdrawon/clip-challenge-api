@@ -28,6 +28,7 @@ public class TransactionServiceImpl implements TransactionService {
 
 	@Override
 	public Payment createPayment(Payment payment) {
+		payment.setIsDisbursed(false);
 		return paymentRepository.save(payment);
 	}
 
