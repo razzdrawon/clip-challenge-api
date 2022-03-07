@@ -1,7 +1,6 @@
 package com.example.clip.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -18,7 +17,7 @@ public interface UserService {
 
 	public List<User> getUsersWithPayments();
 
-	public Optional<User> getUserById(Long userId);
+	public User getUserById(Long userId);
 
 	public List<User> getUserByFirstName(String firstName);
 

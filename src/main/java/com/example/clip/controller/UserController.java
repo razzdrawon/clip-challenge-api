@@ -4,7 +4,6 @@
 package com.example.clip.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,7 +41,7 @@ public class UserController {
 	}
 
 	@GetMapping("/users/{userId}")
-	public ResponseEntity<Optional<User>> getUserById(@PathVariable Long userId) {
+	public ResponseEntity<User> getUserById(@PathVariable Long userId) {
 		return new ResponseEntity<>(userService.getUserById(userId), HttpStatus.OK);
 	}
 

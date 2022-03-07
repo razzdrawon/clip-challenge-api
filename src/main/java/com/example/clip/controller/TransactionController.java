@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.clip.model.Payment;
+import com.example.clip.model.dto.ReportPerUserDTO;
 import com.example.clip.request.PaymentRequest;
 import com.example.clip.service.TransactionService;
 
@@ -34,6 +36,11 @@ public class TransactionController {
 	@GetMapping("/payments")
 	public ResponseEntity<List<Payment>> getAllPayments() {
 		return new ResponseEntity<>(transactionService.getAllPayments(), HttpStatus.OK);
+	}
+	
+	@GetMapping("/payments/report/{userId}")
+	public ResponseEntity<ReportPerUserDTO> getAllPayments(@PathVariable Long userId) {
+		return new ResponseEntity<>(transactionService.createReportPerUser(userId), HttpStatus.OK);
 	}
 
 }
