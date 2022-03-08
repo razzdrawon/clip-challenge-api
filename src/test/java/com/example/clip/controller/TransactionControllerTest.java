@@ -6,7 +6,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.nio.file.Paths;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -17,34 +16,34 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.example.clip.model.dto.UserDTO;
-import com.example.clip.service.UserService;
+import com.example.clip.model.dto.ReportPerUserDTO;
+import com.example.clip.service.TransactionService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(UserController.class)
-public class UserControllerTest {
+@WebMvcTest(TransactionController.class)
+public class TransactionControllerTest {
     
 	@MockBean
-	private UserService service;
+	private TransactionService service;
 	
 	@Autowired
 	private MockMvc mockMvc;
 	
-	
-	private static List<UserDTO> users;
+	private static final Long userId = (long) 1;
+	private static ReportPerUserDTO report;
 
-	private static final String USERS_PAYMENTS_ENDPOINT = "/api/clip/usersWithPayments";
+	private static final String REPORT_ENDPOINT = "/api/clip/payments/report/" + userId;
     
     @Test
-    public void getUsersWithPaymentsTest() throws Exception {
+    public void reportPerUserTest() throws Exception {
     	
-    	users = new ObjectMapper().readValue(Paths.get("src/test/resources/usersWithPayments.json").toFile(),
-				new TypeReference<List<UserDTO>>() {
+    	report = new ObjectMapper().readValue(Paths.get("src/test/resources/reportPerUser.json").toFile(),
+				new TypeReference<ReportPerUserDTO>() {
 				});
-    	doReturn(users).when(service).getUsersWithPayments();
-		this.mockMvc.perform(get(USERS_PAYMENTS_ENDPOINT).accept(MediaType.APPLICATION_JSON))
+    	doReturn(report).when(service).createReportPerUser(userId);
+		this.mockMvc.perform(get(REPORT_ENDPOINT).accept(MediaType.APPLICATION_JSON))
 		     .andDo(print()).andExpect(status().isOk());
     }
     

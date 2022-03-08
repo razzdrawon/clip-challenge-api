@@ -1,0 +1,49 @@
+{
+    "userId": 1,
+    "firstName": "Ricardo Axel",
+    "lastName": "Padilla Gonzalez",
+    "paymentsSum": 11434.78,
+    "newPaymentsSum": 11434.78,
+    "newPayments": [
+        {
+            "paymentId": 1,
+            "amount": 192.23,
+            "userId": 1,
+            "isDisbursed": false,
+            "cardInfo": "CardInfo1",
+            "createdDt": "2022-03-05T05:00:00.000+00:00"
+        },
+        {
+            "paymentId": 2,
+            "amount": 307.80,
+            "userId": 1,
+            "isDisbursed": false,
+            "cardInfo": "CardInfo2",
+            "createdDt": "2022-03-05T05:00:00.000+00:00"
+        },
+        {
+            "paymentId": 3,
+            "amount": 1500.00,
+            "userId": 1,
+            "isDisbursed": false,
+            "cardInfo": "CardInfo3",
+            "createdDt": "2022-03-05T05:00:00.000+00:00"
+        },
+        {
+            "paymentId": 4,
+            "amount": 400.00,
+            "userId": 1,
+            "isDisbursed": false,
+            "cardInfo": "CardInfo3",
+            "createdDt": "2022-03-05T05:00:00.000+00:00"
+        },
+        {
+            "paymentId": 5,
+            "amount": 9034.75,
+            "userId": 1,
+            "isDisbursed": false,
+            "cardInfo": "CardInfo3",
+            "createdDt": "2022-03-05T05:00:00.000+00:00"
+        }
+    ]
+}
