@@ -6,6 +6,8 @@ package com.example.clip.service;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.example.clip.model.Payment;
 import com.example.clip.model.User;
+import com.example.clip.model.dto.PaymentDTO;
 import com.example.clip.model.dto.ReportPerUserDTO;
 import com.example.clip.repository.PaymentRepository;
 import com.example.clip.repository.UserRepository;
@@ -29,18 +32,21 @@ public class TransactionServiceImpl implements TransactionService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	ModelMapper mapper;
 
 	@Override
-	public List<Payment> getAllPayments() {
-		return paymentRepository.findAll();
+	public List<PaymentDTO> getAllPayments() {
+		return mapper.map(paymentRepository.findAll(), new TypeToken<List<PaymentDTO>>(){}.getType());
 	}
 
 	@Override
-	public Payment createPayment(Payment payment) {
+	public PaymentDTO createPayment(Payment payment) {
 		payment.setIsDisbursed(false);
 		userRepository.findById(payment.getUserId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
 				String.format("User ID: %d not found", payment.getUserId())));
-		return paymentRepository.save(payment);
+		return mapper.map(paymentRepository.save(payment), PaymentDTO.class);
 	}
 
 	@Override

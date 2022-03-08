@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.example.clip.model.User;
+import com.example.clip.model.dto.UserDTO;
 
 /**
  * @author Ricardo Padilla
@@ -13,12 +13,12 @@ import com.example.clip.model.User;
 @Service
 public interface UserService {
 
-	public List<User> getAllUsers();
+	public List<UserDTO> getAllUsers();
 
-	public List<User> getUsersWithPayments();
+	public List<UserDTO> getUsersWithPayments();
 
-	public User getUserById(Long userId);
+	public UserDTO getUserById(Long userId);
 
-	public List<User> getUserByFirstName(String firstName);
+	public List<UserDTO> getUserByFirstName(String firstName);
 
 }

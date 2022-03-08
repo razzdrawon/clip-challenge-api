@@ -10,12 +10,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.clip.model.Disbursement;
 import com.example.clip.model.Payment;
 import com.example.clip.model.User;
+import com.example.clip.model.dto.DisbursementDTO;
 import com.example.clip.model.dto.UserDisbursementDTO;
 import com.example.clip.repository.DisbursementRepository;
 import com.example.clip.repository.PaymentRepository;
@@ -28,7 +31,7 @@ import com.example.clip.repository.UserRepository;
 @Service
 public class DisbursementServiceImpl implements DisbursementService {
 
-	private static final BigDecimal FEE = new BigDecimal(1 - 0.035);
+	private static final BigDecimal FEE = BigDecimal.valueOf(1 - 0.035);
 
 	@Autowired
 	private PaymentRepository paymentRepository;
@@ -38,6 +41,9 @@ public class DisbursementServiceImpl implements DisbursementService {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	ModelMapper mapper;
 
 	@Override
 	public List<UserDisbursementDTO> processDisbursements() {
@@ -62,8 +68,8 @@ public class DisbursementServiceImpl implements DisbursementService {
 	}
 
 	@Override
-	public List<Disbursement> getAllDisbursements() {
-		return disbursementRepository.findAll();
+	public List<DisbursementDTO> getAllDisbursements() {
+		return mapper.map(disbursementRepository.findAll(), new TypeToken<List<DisbursementDTO>>(){}.getType());
 	}
 
 }

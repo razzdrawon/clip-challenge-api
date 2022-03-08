@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.clip.model.Payment;
+import com.example.clip.model.dto.PaymentDTO;
 import com.example.clip.model.dto.ReportPerUserDTO;
 
 /**
@@ -14,9 +15,9 @@ import com.example.clip.model.dto.ReportPerUserDTO;
 @Service
 public interface TransactionService {
 
-	public List<Payment> getAllPayments();
+	public List<PaymentDTO> getAllPayments();
 
-	public Payment createPayment(Payment payment);
+	public PaymentDTO createPayment(Payment payment);
 	
 	public ReportPerUserDTO createReportPerUser(Long userId);
 

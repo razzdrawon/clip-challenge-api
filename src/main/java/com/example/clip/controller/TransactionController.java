@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.clip.model.Payment;
+import com.example.clip.model.dto.PaymentDTO;
 import com.example.clip.model.dto.ReportPerUserDTO;
 import com.example.clip.request.PaymentRequest;
 import com.example.clip.service.TransactionService;
@@ -26,7 +27,7 @@ public class TransactionController {
 	TransactionService transactionService;
 
 	@PostMapping("/payments")
-	public ResponseEntity<Payment> create(@RequestBody PaymentRequest paymentRequest) {
+	public ResponseEntity<PaymentDTO> create(@RequestBody PaymentRequest paymentRequest) {
 		Payment payment = new Payment(paymentRequest.getAmount().setScale(2, RoundingMode.HALF_EVEN),
 				paymentRequest.getUserId(), paymentRequest.getCardInfo());
 		return new ResponseEntity<>(transactionService.createPayment(payment), HttpStatus.CREATED);
@@ -34,7 +35,7 @@ public class TransactionController {
 	}
 
 	@GetMapping("/payments")
-	public ResponseEntity<List<Payment>> getAllPayments() {
+	public ResponseEntity<List<PaymentDTO>> getAllPayments() {
 		return new ResponseEntity<>(transactionService.getAllPayments(), HttpStatus.OK);
 	}
 	

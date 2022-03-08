@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.clip.model.User;
+import com.example.clip.model.dto.UserDTO;
 import com.example.clip.service.UserService;
 
 /**
@@ -30,23 +30,23 @@ public class UserController {
 	private UserService userService;
 
 	@GetMapping("/users")
-	public ResponseEntity<List<User>> getAllUsers() {
+	public ResponseEntity<List<UserDTO>> getAllUsers() {
 		System.out.println(userService.getAllUsers());
 		return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
 	}
 
 	@GetMapping("/usersWithPayments")
-	public ResponseEntity<List<User>> getUsersWithPayments() {
+	public ResponseEntity<List<UserDTO>> getUsersWithPayments() {
 		return new ResponseEntity<>(userService.getUsersWithPayments(), HttpStatus.OK);
 	}
 
 	@GetMapping("/users/{userId}")
-	public ResponseEntity<User> getUserById(@PathVariable Long userId) {
+	public ResponseEntity<UserDTO> getUserById(@PathVariable Long userId) {
 		return new ResponseEntity<>(userService.getUserById(userId), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/users", params = "firstName", method = RequestMethod.GET)
-	public ResponseEntity<List<User>> getUserByFirstName(@RequestParam String firstName) {
+	public ResponseEntity<List<UserDTO>> getUserByFirstName(@RequestParam String firstName) {
 		return new ResponseEntity<>(userService.getUserByFirstName(firstName), HttpStatus.OK);
 	}
 }
